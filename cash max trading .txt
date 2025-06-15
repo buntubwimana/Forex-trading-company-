@@ -1,0 +1,85 @@
+cash max trading 
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forex Trading Cash</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; }
+    input, button { padding: 10px; margin: 5px; width: 80%; max-width: 300px; }
+    .robot { border: 1px solid #ccc; padding: 10px; margin: 10px; }
+    .robot img { width: 100px; height: auto; }
+  </style>
+</head>
+<body>
+  <h1>Cashmax Trading</h1>
+  <h2>Iyandikishe</h2>
+  <input type="text" id="name" placeholder="Izina">
+  <input type="password" id="password" placeholder="Ijambo banga">
+  <input type="text" id="invite" placeholder="Invitation Code">
+  <button onclick="register()">Register</button>
+
+  <h2>Canke Winjire</h2>
+  <button onclick="login()">Login</button>
+
+  <h3>Robots zigura</h3>
+  <div id="robots"></div>
+
+  <h3>Mobile Money</h3>
+  <p>Shira amafaranga kuri: 66816448 (Lumicash)</p>
+
+<script>
+const robots = [
+  { name: "Robot 1", price: 20000, rate: 0.08 },
+  { name: "Robot 2", price: 30000, rate: 0.08 },
+  { name: "Robot 3", price: 50000, rate: 0.08 }, "Robot 4", price: 100000, rate: 0.08 },
+  { name: "Robot 5", price: 200000, rate: 0.08 }
+];
+
+function displayRobots() {
+  let html = "";
+  robots.forEach((r, i) => {
+    const daily = r.price * r.rate;
+    const total = daily * 30;
+    html += `
+      <div class="robot">
+        <img src="https://via.placeholder.com/100?text=Robot+i+1" alt="Robot{i+1}">
+        <p><strong>r.name</strong></p>
+        <p>Igiciro:{r.price} BIF</p>
+        <p>Inyungu kumunsi: daily BIF</p>
+        <p>Muri 30 jours:{total} BIF</p>
+        <button onclick="buyRobot(${i})">Gura</button>
+      </div>
+    `;
+  });
+  document.getElementById("robots").innerHTML = html;
+}
+
+function register() {
+  const name = document.getElementById("name").value;
+  const invite = document.getElementById("invite").value;
+  const code = Math.floor(Math.random() * 1000000);
+  localStorage.setItem("user", JSON.stringify({ name, code, invite }));
+  alert("Wiyandikishije. Code yawe ni: " + code);
+}
+
+function login() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (user) alert("Wamaze kwiyandikisha nka: " + user.name);
+  else alert("Ntiwiyandikishije.");
+}
+
+function buyRobot(i) {
+  const robot = robots[i];
+  const user = JSON.parse(localStorage.getItem("user"));
+[6/15, 1:51 AM] ChatGPT: if (!user) return alert("Banze: banza wiyandikishe.");
+  const reward = robot.price * 0.08;
+  alert(`Waguze{robot.name}. Uzoronka ${reward} BIF kumunsi, 30 jours.`);
+}
+displayRobots();
+</script>
+</body>
+</html>
